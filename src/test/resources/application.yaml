@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - uri: https://albertoimpl.com
+          predicates:
+            - Path=/wasm
+          filters:
+            - StripPrefix=1
+            - CustomSumWASMFilter
+        - uri: https://albertoimpl.com
+          predicates:
+            - Path=/regular
+          filters:
+            - StripPrefix=1
+            - CustomSumRegularFilter
